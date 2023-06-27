@@ -1,0 +1,2 @@
+# Принять новый скриншот
+yarn jest:integration --updateSnapshot

@@ -1,0 +1,29 @@
+.block {
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bar {
+    margin-top: 2px;
+    height: 5px;
+}
+
+.link {
+    color: white;
+}
+
+.logo {
+    height: 40px;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.button {
+    background: transparent;
+    padding: 0
+}

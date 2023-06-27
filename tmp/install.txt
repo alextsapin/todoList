@@ -1,0 +1,5 @@
+# Snapshot test add
+yarn add puppeteer jest-puppeteer jest-image-snapshot start-server-add-test --dev
+
+# StoryBook
+npx -p @storybook/cli sb init

@@ -1,0 +1,11 @@
+.block {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.bar {
+    height: 5px;
+}
