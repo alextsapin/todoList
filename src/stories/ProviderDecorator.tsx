@@ -6,11 +6,11 @@ import {legacy_createStore as createStore, combineReducers, applyMiddleware, Any
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk';
 
 // Reducers
-import {todoReducer} from '../features/TodoList/todosReducer';
+import {todoReducer} from '../features/TodoList/todos.reducer';
 import {taskReducer} from '../features/TaskList/taskReducer';
 import {taskPriority, taskStatus} from '../api/api';
-import {AppReducer} from '../App/reducer';
-import {loginReducer} from '../components/Login/loginReducer';
+import {AppReducer} from '../App/App.reducer';
+import {loginReducer} from '../components/Login/login.reducer';
 
 // Объединим редьюсеры
 const storyBookReducer = combineReducers({

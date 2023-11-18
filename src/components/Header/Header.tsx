@@ -8,7 +8,7 @@ import Tooltip from '@mui/material/Tooltip';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {Img} from 'react-image';
 import LoginIcon from '@mui/icons-material/Login';
-import {auth, logout} from '../Login/loginReducer';
+import {auth, logout} from '../Login/login.reducer';
 import css from './css.module.scss';
 import logo from './logo.png';
 

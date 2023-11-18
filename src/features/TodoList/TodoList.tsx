@@ -11,7 +11,7 @@ import TaskList from '../TaskList/TaskList';
 import EditableInput from '../../components/EditableInput/EditableInput';
 
 // TC
-import {changeTodoListTitle, deleteTodoList} from './todosReducer';
+import {changeTodoListTitle, deleteTodoList} from './todos.reducer';
 import {addTask, fetchTasks} from '../TaskList/taskReducer';
 
 // Hooks
@@ -19,8 +19,8 @@ import {useAppDispatch} from '../../hooks/hooks';
 
 // Types
 import {taskStatus, taskType} from '../../api/api';
-import {filterType} from './todosReducer';
-import {StatusType} from '../../App/reducer';
+import {filterType} from './todos.reducer';
+import {StatusType} from '../../App/App.reducer';
 
 type TodoListPropsType = {
     title: string

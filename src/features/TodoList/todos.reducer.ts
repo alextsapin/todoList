@@ -1,5 +1,5 @@
 import {todosAPI, todoListApiType} from '../../api/api';
-import {setError, setStatus, StatusType } from '../../App/reducer';
+import {setError, setStatus, StatusType } from '../../App/App.reducer';
 import {createSlice, PayloadAction, createAsyncThunk} from "@reduxjs/toolkit";
 
 export type filterType = 'ALL' | 'ACTIVE' | 'COMPLETED';
@@ -77,17 +77,15 @@ const slice = createSlice({
     extraReducers(builder) {
         builder.addCase(fetchTodos.fulfilled, (state, action) => {
             if(action.payload) {
-                return state = action.payload.data.map(t => ({...t, filter: 'ALL', status: 'idle'}))
+                return action.payload.data.map(t => ({...t, filter: 'ALL', status: 'idle'}))
             }
         });
-
         builder.addCase(deleteTodoList.fulfilled, (state, action) => {
             const index = state.findIndex(t => t.id === action.payload?.id)
             if(index !== -1) {
                 state.splice(index, 1)
             }
         });
-
         builder.addCase(addTodoList.fulfilled, (state, action) => {
             if(action.payload) {
                 state.unshift({
@@ -98,7 +96,6 @@ const slice = createSlice({
                 })
             }
         });
-
         builder.addCase(changeTodoListTitle.fulfilled, (state, action) => {
             if(action.payload) {
                 state.filter(t => t.id === action.payload?.id ? t.title = action.payload.title : t) 
@@ -108,4 +105,5 @@ const slice = createSlice({
 })
 
 export const {toggleTodoStatus, changeTodoListFilter} = slice.actions
+export const todosActions = slice.actions
 export const todoReducer = slice.reducer;

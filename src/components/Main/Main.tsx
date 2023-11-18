@@ -5,9 +5,9 @@ import Grid from '@mui/material/Grid';
 import Error from '../Error/Error';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import TodoList from '../../features/TodoList/TodoList';
-import {changeTodoListFilter, fetchTodos} from '../../features/TodoList/todosReducer';
+import {changeTodoListFilter, fetchTodos} from '../../features/TodoList/todos.reducer';
 import {deleteTask} from '../../features/TaskList/taskReducer';
-import {filterType} from '../../features/TodoList/todosReducer';
+import {filterType} from '../../features/TodoList/todos.reducer';
 import {useNavigate} from 'react-router-dom';
 
 type propsType = {

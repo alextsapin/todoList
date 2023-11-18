@@ -10,7 +10,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Error from '../Error/Error';
 
 import {useAppDispatch} from '../../hooks/hooks';
-import {login} from './loginReducer';
+import {login} from './login.reducer';
 import css from './css.module.scss';
 
 type FormValuesType = {
