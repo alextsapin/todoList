@@ -1,11 +1,11 @@
-import {createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import {taskAPI, taskType, todoListApiType, taskPriority, taskStatus} from '../../api/api';
 import {AppStateType} from '../../App/store';
 import {setError, setStatus} from '../../App/App.reducer';
 import {AxiosError} from 'axios';
 import {addTodoList, deleteTodoList, fetchTodos} from '../TodoList/todos.reducer';
 
-export type bundleType = {
+export type BundleType = {
     title?: string
     status?: taskStatus
     deadline?: null | string
@@ -25,7 +25,15 @@ const initialState: StateType = {}
 const slice = createSlice({
     name: 'task',
     initialState,
-    reducers: {},
+    reducers: {
+        updateTask: (state, action: PayloadAction<{todoListId: string, taskId: string, bundle: BundleType}>) => {
+            const tasks = state[action.payload.todoListId]
+            const index = tasks.findIndex(t => t.id === action.payload.taskId)
+            if (index !== -1) {
+                tasks[index] = {...tasks[index], ...action.payload.bundle}
+            }
+        }
+    },
     extraReducers(builder) {
         builder.addCase(fetchTodos.fulfilled, (state, action) => {
             if(action.payload) {
@@ -112,7 +120,7 @@ export const addTask = createAsyncThunk('task/add', async (params: {todoListId: 
     } 
 })
 
-export const updateTask = createAsyncThunk('tasks/updateTask', async (param: {todoListId: any, taskId: string, bundle: bundleType},thunkAPI) => {
+export const updateTask = createAsyncThunk('tasks/updateTask', async (param: {todoListId: string, taskId: string, bundle: BundleType},thunkAPI) => {
 
     const state = thunkAPI.getState() as AppStateType
     const task = state.task[param.todoListId].find(t => t.id === param.taskId)
@@ -121,7 +129,7 @@ export const updateTask = createAsyncThunk('tasks/updateTask', async (param: {to
         return thunkAPI.rejectWithValue('task not found in the state')
     }
 
-    const bundle: bundleType = {
+    const bundle: BundleType = {
         deadline: task.deadline,
         description: task.description,
         priority: task.priority,

@@ -12,7 +12,7 @@ import EditableInput from '../../components/EditableInput/EditableInput';
 
 // TC
 import {changeTodoListTitle, deleteTodoList} from './todos.reducer';
-import {addTask, fetchTasks} from '../TaskList/taskReducer';
+import {addTask, fetchTasks} from '../TaskList/task.reducer';
 
 // Hooks
 import {useAppDispatch} from '../../hooks/hooks';

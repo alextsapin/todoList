@@ -3,7 +3,7 @@ import {taskStatus, taskType} from '../../api/api';
 import ButtonElement from '../../components/Button/Button';
 import EditableInput from '../../components/EditableInput/EditableInput';
 import Checkbox from '@mui/material/Checkbox';
-import {updateTask} from './taskReducer';
+import {updateTask} from './task.reducer';
 import {useAppDispatch} from '../../hooks/hooks';
 
 type TaskListPropsType = {

@@ -6,7 +6,7 @@ import Error from '../Error/Error';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import TodoList from '../../features/TodoList/TodoList';
 import {changeTodoListFilter, fetchTodos} from '../../features/TodoList/todos.reducer';
-import {deleteTask} from '../../features/TaskList/taskReducer';
+import {deleteTask} from '../../features/TaskList/task.reducer';
 import {filterType} from '../../features/TodoList/todos.reducer';
 import {useNavigate} from 'react-router-dom';
 

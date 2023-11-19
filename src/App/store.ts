@@ -3,7 +3,7 @@ import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {configureStore} from '@reduxjs/toolkit';
 
 import {todoReducer} from '../features/TodoList/todos.reducer';
-import {taskReducer} from '../features/TaskList/taskReducer';
+import {taskReducer} from '../features/TaskList/task.reducer';
 import {AppReducer} from './App.reducer';
 import {loginReducer} from '../components/Login/login.reducer';
 

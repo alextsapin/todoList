@@ -5,7 +5,6 @@ import Login from '../components/Login/Login';
 import Main from '../components/Main/Main';
 
 import './reset.css'
-import '../font/OpenSans.css';
 import './App.scss';
 
 type AppType = {
