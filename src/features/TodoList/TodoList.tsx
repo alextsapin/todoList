@@ -45,8 +45,6 @@ const TodoList = React.memo((props: TodoListPropsType) => {
         }
     }, [])
 
-
-    
     const addTaskHandler = React.useCallback(() => {
         let trimmedTitle = title.trim();
         if(trimmedTitle) {

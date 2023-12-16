@@ -11,6 +11,49 @@ export type todoListType = todoListApiType & {
 
 const initialState:  Array<todoListType> = [];
 
+const slice = createSlice({
+    name: 'todo',
+    initialState,
+    reducers: {
+        toggleTodoStatus(state: Array<todoListType>, action: PayloadAction<{id: string, status: StatusType}>) {
+            const index = state.findIndex(t => t.id === action.payload.id)
+            state[index].status = action.payload.status
+        },
+        changeTodoListFilter(state: Array<todoListType>, action: PayloadAction<{id: string, filter: filterType}>) {
+            const index = state.findIndex(t => t.id === action.payload.id)
+            state[index].filter = action.payload.filter
+        }
+    },
+    extraReducers(builder) {
+        builder.addCase(fetchTodos.fulfilled, (state, action) => {
+            if(action.payload) {
+                return action.payload.data.map(t => ({...t, filter: 'ALL', status: 'idle'}))
+            }
+        });
+        builder.addCase(deleteTodoList.fulfilled, (state, action) => {
+            const index = state.findIndex(t => t.id === action.payload?.id)
+            if(index !== -1) {
+                state.splice(index, 1)
+            }
+        });
+        builder.addCase(addTodoList.fulfilled, (state, action) => {
+            if(action.payload) {
+                state.unshift({
+                    id: action.payload.id,
+                    title: action.payload.title,
+                    filter: 'ALL',
+                    status: 'idle'
+                })
+            }
+        });
+        builder.addCase(changeTodoListTitle.fulfilled, (state, action) => {
+            if(action.payload) {
+                state.filter(t => t.id === action.payload?.id ? t.title = action.payload.title : t) 
+            }
+        });
+    }
+})
+
 export const fetchTodos = createAsyncThunk('todo/get', async (params, thunkApi) => {
     thunkApi.dispatch(setStatus({status: 'loading'}))
     try {
@@ -58,49 +101,6 @@ export const changeTodoListTitle = createAsyncThunk('todo/change title', async (
         return {id: params.id, title: params.title}
     } else {
         thunkApi.dispatch(setError({error: 'Change todo list error...'}));
-    }
-})
-
-const slice = createSlice({
-    name: 'todo',
-    initialState,
-    reducers: {
-        toggleTodoStatus(state: Array<todoListType>, action: PayloadAction<{id: string, status: StatusType}>) {
-            const index = state.findIndex(t => t.id === action.payload.id)
-            state[index].status = action.payload.status
-        },
-        changeTodoListFilter(state: Array<todoListType>, action: PayloadAction<{id: string, filter: filterType}>) {
-            const index = state.findIndex(t => t.id === action.payload.id)
-            state[index].filter = action.payload.filter
-        }
-    },
-    extraReducers(builder) {
-        builder.addCase(fetchTodos.fulfilled, (state, action) => {
-            if(action.payload) {
-                return action.payload.data.map(t => ({...t, filter: 'ALL', status: 'idle'}))
-            }
-        });
-        builder.addCase(deleteTodoList.fulfilled, (state, action) => {
-            const index = state.findIndex(t => t.id === action.payload?.id)
-            if(index !== -1) {
-                state.splice(index, 1)
-            }
-        });
-        builder.addCase(addTodoList.fulfilled, (state, action) => {
-            if(action.payload) {
-                state.unshift({
-                    id: action.payload.id,
-                    title: action.payload.title,
-                    filter: 'ALL',
-                    status: 'idle'
-                })
-            }
-        });
-        builder.addCase(changeTodoListTitle.fulfilled, (state, action) => {
-            if(action.payload) {
-                state.filter(t => t.id === action.payload?.id ? t.title = action.payload.title : t) 
-            }
-        });
     }
 })
 
