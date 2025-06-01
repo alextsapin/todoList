@@ -7,16 +7,12 @@ import Main from '../components/Main/Main';
 import './reset.css'
 import './App.scss';
 
-type AppType = {
-    demo?: boolean
-}
-
-const App = React.memo((props: AppType) => {
+const App = React.memo(() => {
     return (
         <React.Fragment>
             <Header/>
             <Routes>
-                <Route path='/' element={<Main demo={props.demo}/>}/>
+                <Route path='/' element={<Main/>}/>
                 <Route path='/login' element={<Login/>}/>
             </Routes>
         </React.Fragment>

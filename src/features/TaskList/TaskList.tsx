@@ -39,7 +39,7 @@ const TaskList: FC<TaskListPropsType> = ({todoListId, tasks, removeTask}) => {
         )
     })
     
-    return <div>{taskJSXElements}</div>
+    return <div>{taskJSXElements.length === 0 ? 'Your tasklist is empty!': taskJSXElements }</div>
 }
 
 export default TaskList;

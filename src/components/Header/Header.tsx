@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
@@ -12,7 +12,7 @@ import {auth, logout} from '../Login/login.reducer';
 import css from './css.module.scss';
 import logo from './logo.png';
 
-const Header = () => {
+const Header: FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 

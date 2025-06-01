@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -30,7 +31,6 @@ type TodoListPropsType = {
     tasks: Array<taskType>
     removeTask: (todolistId: string, id: string) => void
     changeFilter: (todoListId: string, filter: filterType) => void
-    demo?: boolean
 }
 
 const TodoList = React.memo((props: TodoListPropsType) => {
@@ -40,9 +40,7 @@ const TodoList = React.memo((props: TodoListPropsType) => {
     const [error, setError] = React.useState(false);
 
     React.useEffect(() => {
-        if(props.demo !== true) {
-            dispatch(fetchTasks(props.todoListId))
-        }
+        dispatch(fetchTasks(props.todoListId))
     }, [])
 
     const addTaskHandler = React.useCallback(() => {

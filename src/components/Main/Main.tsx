@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import Container from '@mui/material/Container';
 import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
@@ -8,22 +9,15 @@ import TodoList from '../../features/TodoList/TodoList';
 import {changeTodoListFilter, fetchTodos} from '../../features/TodoList/todos.reducer';
 import {deleteTask} from '../../features/TaskList/task.reducer';
 import {filterType} from '../../features/TodoList/todos.reducer';
-import {useNavigate} from 'react-router-dom';
 
-type propsType = {
-    demo?: boolean
-}
-
-const Main = (props: propsType) => {
+const Main = () => {
     const dispatch = useAppDispatch();
 
     const todoListBox = useAppSelector(state => state.todo);
     const taskBox = useAppSelector(state => state.task);
 
     React.useEffect(() => {
-        if(props.demo !== true) {
-            dispatch(fetchTodos())
-        }
+        dispatch(fetchTodos())
     }, [])
 
     // Todos
@@ -47,7 +41,6 @@ const Main = (props: propsType) => {
                 tasks={taskBox[item.id]} 
                 removeTask={removeTask} 
                 changeFilter={changeFilter} 
-                demo={props.demo}
             />
         )
     })
