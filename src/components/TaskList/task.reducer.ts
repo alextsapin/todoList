@@ -3,7 +3,7 @@ import {taskAPI, taskType, todoListApiType, taskPriority, taskStatus} from '../.
 import {AppStateType} from '../../App/store';
 import {setError, setStatus} from '../../App/App.reducer';
 import {AxiosError} from 'axios';
-import {addTodoList, deleteTodoList, fetchTodos} from '../TodoList/todos.reducer';
+import {addTodoList, deleteTodoList, fetchTodos} from '../../components/TodoList/todos.reducer';
 
 export type BundleType = {
     title?: string

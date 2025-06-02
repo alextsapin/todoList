@@ -5,10 +5,10 @@ import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import Grid from '@mui/material/Grid';
 import Error from '../Error/Error';
 import AddItemForm from '../AddItemForm/AddItemForm';
-import TodoList from '../../features/TodoList/TodoList';
-import {changeTodoListFilter, fetchTodos} from '../../features/TodoList/todos.reducer';
-import {deleteTask} from '../../features/TaskList/task.reducer';
-import {filterType} from '../../features/TodoList/todos.reducer';
+import TodoList from '../TodoList/TodoList';
+import {changeTodoListFilter, fetchTodos} from '../TodoList/todos.reducer';
+import {deleteTask} from '../TaskList/task.reducer';
+import {filterType} from '../TodoList/todos.reducer';
 
 const Main = () => {
     const dispatch = useAppDispatch();

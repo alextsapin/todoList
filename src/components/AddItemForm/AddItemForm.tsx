@@ -1,5 +1,5 @@
 import React from 'react';
-import {addTodoList} from '../../features/TodoList/todos.reducer';
+import {addTodoList} from '../TodoList/todos.reducer';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 
 // MUI
@@ -28,6 +28,7 @@ const AddItemForm = React.memo(() => {
         } else {
             setError(true)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [todoListTitle])
 
     return (

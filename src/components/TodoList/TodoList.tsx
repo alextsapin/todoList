@@ -7,9 +7,9 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import TextField from '@mui/material/TextField';
 
 // Components
-import ButtonElement from '../../components/Button/Button';
+import ButtonElement from '../Button/Button';
 import TaskList from '../TaskList/TaskList';
-import EditableInput from '../../components/EditableInput/EditableInput';
+import EditableInput from '../EditableInput/EditableInput';
 
 // TC
 import {changeTodoListTitle, deleteTodoList} from './todos.reducer';
