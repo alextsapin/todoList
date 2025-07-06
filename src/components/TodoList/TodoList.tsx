@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -36,8 +36,8 @@ type TodoListProps = {
 const TodoList = memo((props: TodoListProps) => {
     const dispatch = useAppDispatch();
 
-    const [title, setTitle] = React.useState('');
-    const [error, setError] = React.useState(false);
+    const [title, setTitle] = useState('');
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         dispatch(fetchTasks(props.todoListId))

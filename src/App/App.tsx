@@ -2,12 +2,12 @@ import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Login from '../components/Login/Login';
-import Main from '../components/Main/Main';
+import {Main} from '../components/Main/Main';
 
 import './reset.css'
 import './App.scss';
 
-const App = React.memo(() => {
+export const App = React.memo(() => {
     return (
         <React.Fragment>
             <Header/>
@@ -18,5 +18,3 @@ const App = React.memo(() => {
         </React.Fragment>
     )
 })
-
-export default App;

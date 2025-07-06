@@ -1,13 +1,13 @@
 import React, {ChangeEvent, memo, useState} from 'react';
 import TextField from '@mui/material/TextField';
 
-type EditableInputPropsType = {
+type EditableInputProps = {
     title: string
     css?: string
     callBack: (newTitle: string) => void
 }
 
-export const EditableInput = memo((props: EditableInputPropsType) => {
+export const EditableInput = memo((props: EditableInputProps) => {
 
     const [edit, setEdit] = useState(false);
     const [newTitle, setNewTitle] = useState(props.title);

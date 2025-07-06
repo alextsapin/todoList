@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect } from 'react';
 import Container from '@mui/material/Container';
-import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
 import Grid from '@mui/material/Grid';
 import Error from '../Error/Error';
-
 import TodoList from '../TodoList/TodoList';
-import {changeTodoListFilter, fetchTodos} from '../TodoList/todos.reducer';
+import { changeTodoListFilter, fetchTodos } from '../TodoList/todos.reducer';
 import { addTodoList } from '../TodoList/todos.reducer';
-import {deleteTask} from '../TaskList/task.reducer';
-import {filterType} from '../TodoList/todos.reducer';
+import { deleteTask } from '../TaskList/task.reducer';
+import { filterType } from '../TodoList/todos.reducer';
 import { AddItemForm } from 'components/AddItemForm/AddItemForm';
+import { Paper } from '@mui/material';
 
-const Main = () => {
+export const Main = () => {
     const dispatch = useAppDispatch();
 
     const todoListBox = useAppSelector(state => state.todo);
@@ -25,6 +25,10 @@ const Main = () => {
     // Todos
     const changeFilter = useCallback((id: string, filter: filterType) => {
         dispatch(changeTodoListFilter({id, filter}))
+    }, [])
+
+    const addTodoHandler = useCallback((title: string) => {
+        dispatch(addTodoList(title))
     }, [])
 
     // Tasks
@@ -50,12 +54,17 @@ const Main = () => {
     return (
         <Container fixed>
             <Error/>
-                <AddItemForm onclick={addTodoList}/>
-                <Grid container spacing={2}>
-                    {todoListJSX}
+            <Grid container spacing={2}>
+                <Grid item md={4}>
+                    <Paper className="taskBox" elevation={3}>
+                        <p className="taskBox__title">Add new todoList</p>
+                        <AddItemForm onclick={addTodoHandler}/>
+                    </Paper>
                 </Grid>
-        </Container>
+            </Grid>
+            <Grid container spacing={2}>
+                {todoListJSX}
+            </Grid>
+    </Container>
     )
 }
-
-export default Main;
