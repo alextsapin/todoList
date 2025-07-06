@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {FC, useEffect} from 'react';
 import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';

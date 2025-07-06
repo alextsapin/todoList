@@ -8,7 +8,7 @@ const instance = axios.create({
     }
 })
 
-export type todoListApiType = {
+export type TodoListApi = {
     id: string
     title: string
 }
@@ -27,43 +27,36 @@ export type loginType = {
 }
 
 export const authAPI = {
-    authMe() {
-        return instance.get<todoResponseType<{id: number, email: string, login: string}>>(`auth/me`).then((response) => {
-            return response
-        })
+    async authMe() {
+        const response = await instance.get<todoResponseType<{id: number; email: string; login: string;}>>(`auth/me`);
+        return response;
     },
-    login(data: loginType ) {
-        return instance.post<todoResponseType<{userId: number}>>(`auth/login`, data).then((response) => {
-            return response
-        })
+    async login(data: loginType ) {
+        const response = await instance.post<todoResponseType<{userId: number}>>(`auth/login`, data);
+        return response;
     },
-    logout() {
-        return instance.delete<todoResponseType>(`auth/login`).then((response) => {
-            return response
-        })
+    async logout() {
+        const response = await instance.delete<todoResponseType>(`auth/login`);
+        return response;
     }
 }
 
 export const todosAPI = {
-    getTodos() {
-        return instance.get<Array<todoListApiType>>(`todo-lists`).then((response) => {
-            return response.data; 
-        })
+    async getTodos() {
+        const response = await instance.get<Array<TodoListApi>>(`todo-lists`);
+        return response.data;
     },
-    addTodo(title: string) {
-        return instance.post<todoResponseType<{item: todoListApiType}>>(`todo-lists`, {title: title}).then((response) => {
-            return response; 
-        })
+    async addTodo(title: string) {
+        const response = await instance.post<todoResponseType<{item: TodoListApi}>>(`todo-lists`, { title: title });
+        return response;
     },
-    deleteTodo(id: string) {
-        return instance.delete<todoResponseType>(`todo-lists/${id}`,).then((response) => {
-            return response; 
-        })
+    async deleteTodo(id: string) {
+        const response = await instance.delete<todoResponseType>(`todo-lists/${id}`);
+        return response;
     },
-    updateTodo(id: string, title: string) {
-        return instance.put<todoResponseType>(`todo-lists/${id}`,{title: title}).then((response) => {
-            return response.status; 
-        })
+    async updateTodo(id: string, title: string) {
+        const response = await instance.put<todoResponseType>(`todo-lists/${id}`, { title: title });
+        return response.status;
     }
 }
 
@@ -113,23 +106,20 @@ type bundleType = {
 }
 
 export const taskAPI = {
-    getTasks(todoListId: string) {
-        return instance.get<taskResponse>(`todo-lists/${todoListId}/tasks`).then((response) => {
-            return response.data.items; 
-        })
+    async getTasks(todoListId: string) {
+        const response = await instance.get<taskResponse>(`todo-lists/${todoListId}/tasks`);
+        return response.data.items;
     },
-    addTask(todoListId: string, title: string) {
-        return instance.post<todoResponseType<{item: taskType}>>(`todo-lists/${todoListId}/tasks`, {title: title}).then((response) => {
-            return response.data
-        })
+    async addTask(todoListId: string, title: string) {
+        const response = await instance.post<todoResponseType<{ item: taskType; }>>(`todo-lists/${todoListId}/tasks`, { title: title });
+        return response.data;
     },
-    deleteTask(todoId: string, taskId: string) {
-        return instance.delete<todoResponseType>(`todo-lists/${todoId}/tasks/${taskId}`).then((response) => {
-            return response
-        })
+    async deleteTask(todoId: string, taskId: string) {
+        const response = await instance.delete<todoResponseType>(`todo-lists/${todoId}/tasks/${taskId}`);
+        return response;
     },
-    updateTask(todoId: string, taskId: string, bundle: bundleType) {
-        return instance.put<todoResponseType<{item: taskType}>>(`todo-lists/${todoId}/tasks/${taskId}`, {
+    async updateTask(todoId: string, taskId: string, bundle: bundleType) {
+        const response = await instance.put<todoResponseType<{ item: taskType; }>>(`todo-lists/${todoId}/tasks/${taskId}`, {
             title: bundle.title,
             status: bundle.status,
             deadline: bundle.deadline,
@@ -138,9 +128,8 @@ export const taskAPI = {
             startDate: bundle.startDate,
             addedDate: bundle.addedDate,
             order: bundle.order
-        }).then((response) => {
-            console.log(response)
-            return response;
-        })
+        });
+        console.log(response);
+        return response;
     }
 }

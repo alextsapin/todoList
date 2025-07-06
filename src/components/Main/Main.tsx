@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import {useAppSelector, useAppDispatch} from '../../hooks/hooks';
 import Grid from '@mui/material/Grid';
 import Error from '../Error/Error';
-import AddItemForm from '../AddItemForm/AddItemForm';
+
 import TodoList from '../TodoList/TodoList';
 import {changeTodoListFilter, fetchTodos} from '../TodoList/todos.reducer';
+import { addTodoList } from '../TodoList/todos.reducer';
 import {deleteTask} from '../TaskList/task.reducer';
 import {filterType} from '../TodoList/todos.reducer';
+import { AddItemForm } from 'components/AddItemForm/AddItemForm';
 
 const Main = () => {
     const dispatch = useAppDispatch();
@@ -16,17 +18,17 @@ const Main = () => {
     const todoListBox = useAppSelector(state => state.todo);
     const taskBox = useAppSelector(state => state.task);
 
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch(fetchTodos())
     }, [])
 
     // Todos
-    const changeFilter = React.useCallback((id: string, filter: filterType) => {
+    const changeFilter = useCallback((id: string, filter: filterType) => {
         dispatch(changeTodoListFilter({id, filter}))
     }, [])
 
     // Tasks
-    const removeTask = React.useCallback((todoListId: string, taskId: string) => {
+    const removeTask = useCallback((todoListId: string, taskId: string) => {
         dispatch(deleteTask({todoListId, taskId}));
     }, [])
 
@@ -48,7 +50,7 @@ const Main = () => {
     return (
         <Container fixed>
             <Error/>
-                <AddItemForm/>
+                <AddItemForm onclick={addTodoList}/>
                 <Grid container spacing={2}>
                     {todoListJSX}
                 </Grid>

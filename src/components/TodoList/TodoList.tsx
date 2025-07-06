@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 // Components
 import ButtonElement from '../Button/Button';
 import TaskList from '../TaskList/TaskList';
-import EditableInput from '../EditableInput/EditableInput';
+import {EditableInput} from '../EditableInput/EditableInput';
 
 // TC
 import {changeTodoListTitle, deleteTodoList} from './todos.reducer';
@@ -23,7 +23,7 @@ import {taskStatus, taskType} from '../../api/api';
 import {filterType} from './todos.reducer';
 import {StatusType} from '../../App/App.reducer';
 
-type TodoListPropsType = {
+type TodoListProps = {
     title: string
     todoListId: string
     filter: filterType
@@ -33,17 +33,17 @@ type TodoListPropsType = {
     changeFilter: (todoListId: string, filter: filterType) => void
 }
 
-const TodoList = React.memo((props: TodoListPropsType) => {
+const TodoList = memo((props: TodoListProps) => {
     const dispatch = useAppDispatch();
 
     const [title, setTitle] = React.useState('');
     const [error, setError] = React.useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch(fetchTasks(props.todoListId))
     }, [])
 
-    const addTaskHandler = React.useCallback(() => {
+    const addTaskHandler = useCallback(() => {
         let trimmedTitle = title.trim();
         if(trimmedTitle) {
             dispatch(addTask({todoListId: props.todoListId, title: trimmedTitle}))
@@ -54,7 +54,7 @@ const TodoList = React.memo((props: TodoListPropsType) => {
         }
     }, [dispatch, props.todoListId, title ])
 
-    const editTitleTodoList = React.useCallback((newTitle: string) => {
+    const editTitleTodoList = useCallback((newTitle: string) => {
         dispatch(changeTodoListTitle({id: props.todoListId, title: newTitle}))
     }, [])
 

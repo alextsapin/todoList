@@ -1,5 +1,4 @@
-import React from 'react';
-import {addTodoList} from '../TodoList/todos.reducer';
+import React, { memo, useCallback, useState } from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 
 // MUI
@@ -11,25 +10,29 @@ import TextField from '@mui/material/TextField'
 // Components
 import ButtonElement from '../Button/Button';
 
-const AddItemForm = React.memo(() => {
+type AddItemFormProps = {
+    onclick: (title: string) => any
+}
+
+export const AddItemForm = memo((props: AddItemFormProps) => {
     const dispatch = useAppDispatch();
 
     const status = useAppSelector(state => state.App.status)
     
-    const [error, setError] = React.useState(false);
-    const [todoListTitle, setTodoListTitle] = React.useState('')
+    const [error, setError] = useState(false);
+    const [title, setTitle] = useState('')
 
-    const addTodoListHandler = React.useCallback(() => {
-        const trimmedTitle = todoListTitle.trim();
+    const onClickHandler = useCallback(() => {
+        const trimmedTitle = title.trim();
         if(trimmedTitle) {
-            dispatch(addTodoList(trimmedTitle))
-            setTodoListTitle('')
+            dispatch(props.onclick(trimmedTitle))
+            setTitle('')
             setError(false)
         } else {
             setError(true)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [todoListTitle])
+    }, [title])
 
     return (
         <Grid container spacing={2}>
@@ -39,8 +42,8 @@ const AddItemForm = React.memo(() => {
 
                     <div className="formBox">
                         <TextField 
-                            value={todoListTitle} 
-                            onChange={e => setTodoListTitle(e.currentTarget.value)}
+                            value={title} 
+                            onChange={e => setTitle(e.currentTarget.value)}
                             size="small"
                             label="Add new todoList" 
                             error={error}
@@ -49,7 +52,7 @@ const AddItemForm = React.memo(() => {
                         <ButtonElement 
                             title='ADD' 
                             variant='contained' 
-                            callBack={addTodoListHandler}
+                            callBack={onClickHandler}
                             disabled={status === 'loading'}
                             startIcon={<AddCircleIcon/>}
                         />
@@ -59,5 +62,3 @@ const AddItemForm = React.memo(() => {
         </Grid>
     )
 })
-
-export default AddItemForm

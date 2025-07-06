@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, memo, useState} from 'react';
 import TextField from '@mui/material/TextField';
 
 type EditableInputPropsType = {
@@ -7,10 +7,10 @@ type EditableInputPropsType = {
     callBack: (newTitle: string) => void
 }
 
-const EditableInput = React.memo((props: EditableInputPropsType) => {
+export const EditableInput = memo((props: EditableInputPropsType) => {
 
-    const [edit, setEdit] = React.useState(false);
-    const [newTitle, setNewTitle] = React.useState(props.title);
+    const [edit, setEdit] = useState(false);
+    const [newTitle, setNewTitle] = useState(props.title);
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setNewTitle(e.currentTarget.value)
@@ -31,5 +31,3 @@ const EditableInput = React.memo((props: EditableInputPropsType) => {
         : <span className={props.css} onDoubleClick={turnOnHandler}>{props.title}</span>
     )
 })
-
-export default EditableInput;

@@ -1,10 +1,10 @@
-import {todosAPI, todoListApiType} from '../../api/api';
+import {todosAPI, TodoListApi} from '../../api/api';
 import {setError, setStatus, StatusType } from '../../App/App.reducer';
 import {createSlice, PayloadAction, createAsyncThunk} from "@reduxjs/toolkit";
 
 export type filterType = 'ALL' | 'ACTIVE' | 'COMPLETED';
 
-export type todoListType = todoListApiType & {
+export type todoListType = TodoListApi & {
     status: StatusType
     filter: filterType
 }

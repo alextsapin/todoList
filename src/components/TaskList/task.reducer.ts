@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import {taskAPI, taskType, todoListApiType, taskPriority, taskStatus} from '../../api/api';
+import {taskAPI, taskType, TodoListApi, taskPriority, taskStatus} from '../../api/api';
 import {AppStateType} from '../../App/store';
 import {setError, setStatus} from '../../App/App.reducer';
 import {AxiosError} from 'axios';
@@ -37,7 +37,7 @@ const slice = createSlice({
     extraReducers(builder) {
         builder.addCase(fetchTodos.fulfilled, (state, action) => {
             if(action.payload) {
-                action.payload.data.forEach((t: todoListApiType) => {
+                action.payload.data.forEach((t: TodoListApi) => {
                     state[t.id] = []
                 })
             }
