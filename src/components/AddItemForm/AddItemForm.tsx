@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useState } from 'react';
 import {useAppSelector} from '../../hooks/hooks';
 
 // MUI
@@ -7,10 +7,10 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 import TextField from '@mui/material/TextField'
 
 // Components
-import ButtonElement from '../Button/Button';
+import { Snap } from '../Snap/Snap';
 
 type AddItemFormProps = {
-    onclick: (title: string) => void
+    callBack: (title: string) => void
 }
 
 export const AddItemForm = memo((props: AddItemFormProps) => {
@@ -19,16 +19,16 @@ export const AddItemForm = memo((props: AddItemFormProps) => {
     const [error, setError] = useState(false);
     const [title, setTitle] = useState('')
 
-    const onClickHandler = useCallback(() => {
+    const onClickHandler = () => {
         const trimmedTitle = title.trim();
         if(trimmedTitle) {
-            props.onclick(trimmedTitle)
+            props.callBack(trimmedTitle)
             setTitle('')
             setError(false)
         } else {
             setError(true)
         }
-    }, [title])
+    }
 
     return (
         <div className="formBox">
@@ -40,7 +40,7 @@ export const AddItemForm = memo((props: AddItemFormProps) => {
                 error={error}
             />
 
-            <ButtonElement 
+            <Snap 
                 title='ADD' 
                 variant='contained' 
                 callBack={onClickHandler}

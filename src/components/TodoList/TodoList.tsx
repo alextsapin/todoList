@@ -1,15 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import TextField from '@mui/material/TextField';
 
 // Components
-import ButtonElement from '../Button/Button';
+import { Snap } from '../Snap/Snap';
 import TaskList from '../TaskList/TaskList';
-import {EditableInput} from '../EditableInput/EditableInput';
+
 
 // TC
 import {changeTodoListTitle, deleteTodoList} from './todos.reducer';
@@ -19,9 +17,11 @@ import {addTask, fetchTasks} from '../TaskList/task.reducer';
 import {useAppDispatch} from '../../hooks/hooks';
 
 // Types
-import {taskStatus, taskType} from '../../api/api';
-import {filterType} from './todos.reducer';
-import {StatusType} from '../../App/App.reducer';
+import { taskStatus, taskType } from '../../api/api';
+import { filterType } from './todos.reducer';
+import { StatusType } from '../../App/App.reducer';
+import { AddItemForm } from 'components/AddItemForm/AddItemForm';
+import { EditableField } from 'components/EditableField/EditableField';
 
 type TodoListProps = {
     title: string
@@ -33,30 +33,23 @@ type TodoListProps = {
     changeFilter: (todoListId: string, filter: filterType) => void
 }
 
-const TodoList = memo((props: TodoListProps) => {
+export const TodoList = memo((props: TodoListProps) => {
     const dispatch = useAppDispatch();
-
-    const [title, setTitle] = useState('');
-    const [error, setError] = useState(false);
 
     useEffect(() => {
         dispatch(fetchTasks(props.todoListId))
     }, [])
 
-    const addTaskHandler = useCallback(() => {
+    const addTaskHandler = useCallback((title: string) => {
         let trimmedTitle = title.trim();
         if(trimmedTitle) {
             dispatch(addTask({todoListId: props.todoListId, title: trimmedTitle}))
-            setError(false);
-            setTitle('');
-        } else {
-            setError(true)
         }
-    }, [dispatch, props.todoListId, title ])
+    }, [dispatch, props.todoListId])
 
-    const editTitleTodoList = useCallback((newTitle: string) => {
-        dispatch(changeTodoListTitle({id: props.todoListId, title: newTitle}))
-    }, [])
+    const changeTodoTitleHandler = (title: string) => {
+        dispatch(changeTodoListTitle({id: props.todoListId, title}))
+    }
 
     let tasksForTodoList = props.tasks
     switch(props.filter) {
@@ -73,10 +66,10 @@ const TodoList = memo((props: TodoListProps) => {
     }
 
     return (
-        <Grid item md={4}>
+        <Grid item lg={5} xl={4}>
             <Paper className="taskBox" elevation={3}>
-                <EditableInput title={props.title} css="taskBox__title" callBack={(newTitle) => editTitleTodoList(newTitle)}/>
-                <ButtonElement 
+                <EditableField title={props.title} css="taskBox__title" callBack={changeTodoTitleHandler}/>
+                <Snap 
                     title='' 
                     variant='contained'
                     color="error"
@@ -85,31 +78,9 @@ const TodoList = memo((props: TodoListProps) => {
                     startIcon={<DeleteIcon/>}
                     disabled={props.status === 'loading'}
                 />
-                
-                <div className="formBox">
-                    <TextField 
-                        value={title}
-                        error={error}
-                        disabled={props.status === 'loading'} 
-                        size="small"
-                        onChange={e => setTitle(e.currentTarget.value)}
-                        label="Add new task" 
-                        onKeyPress={(e) => {
-                            if(e.key === 'Enter') {
-                                addTaskHandler()
-                            }
-                        }}
-                    />
 
-                    <ButtonElement 
-                        title='ADD' 
-                        disabled={props.status === 'loading'}
-                        variant='contained' 
-                        callBack={addTaskHandler}
-                        startIcon={<AddCircleIcon/>}
-                    />
-                </div>
-                
+                <AddItemForm callBack={addTaskHandler}/>
+                                
                 <TaskList 
                     tasks={tasksForTodoList} 
                     todoListId={props.todoListId} 
@@ -117,7 +88,7 @@ const TodoList = memo((props: TodoListProps) => {
                 />
 
                 <div className="filterBox">
-                    <ButtonElement 
+                    <Snap 
                         title='All' 
                         variant='contained'
                         callBack={() => props.changeFilter(props.todoListId, 'ALL')} 
@@ -125,7 +96,7 @@ const TodoList = memo((props: TodoListProps) => {
                         btnClass='filterBox__btn'
                     />
 
-                    <ButtonElement
+                    <Snap
                         title='Active' 
                         variant='contained'
                         callBack={() => props.changeFilter(props.todoListId, 'ACTIVE')} 
@@ -133,7 +104,7 @@ const TodoList = memo((props: TodoListProps) => {
                         btnClass='filterBox__btn'
                     />
 
-                    <ButtonElement
+                    <Snap
                         title='DONE' 
                         variant='contained'
                         callBack={() => props.changeFilter(props.todoListId, 'COMPLETED')} 
@@ -145,5 +116,3 @@ const TodoList = memo((props: TodoListProps) => {
         </Grid>
     )
 })
-
-export default TodoList;

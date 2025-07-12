@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Button from '@mui/material/Button'
 
-type ButtonPropsType = {
+type SnapProps = {
     title: string
     variant: "text" | "outlined" | "contained" | undefined
     color?: "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning" | undefined
@@ -12,7 +12,7 @@ type ButtonPropsType = {
     startIcon?: any
 }
 
-const ButtonElement = React.memo((props: ButtonPropsType) => {
+export const Snap = memo((props: SnapProps) => {
     
     const onClickHandler = () => {
         props.callBack()
@@ -32,5 +32,3 @@ const ButtonElement = React.memo((props: ButtonPropsType) => {
         </Button>
     )
 })
-
-export default ButtonElement

@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
 import Grid from '@mui/material/Grid';
 import Error from '../Error/Error';
-import TodoList from '../TodoList/TodoList';
+import { TodoList } from '../TodoList/TodoList';
 import { changeTodoListFilter, fetchTodos } from '../TodoList/todos.reducer';
 import { addTodoList } from '../TodoList/todos.reducer';
 import { deleteTask } from '../TaskList/task.reducer';
@@ -12,7 +12,7 @@ import { filterType } from '../TodoList/todos.reducer';
 import { AddItemForm } from 'components/AddItemForm/AddItemForm';
 import { Paper } from '@mui/material';
 
-export const Main = () => {
+export const Main =  memo(() => {
     const dispatch = useAppDispatch();
 
     const todoListBox = useAppSelector(state => state.todo);
@@ -39,7 +39,7 @@ export const Main = () => {
     const todoListJSX = todoListBox.map((item, index) => {
         return (
             <TodoList 
-                key={index}
+                key={item.id}
                 title={item.title}
                 todoListId={item.id}
                 filter={item.filter} 
@@ -55,10 +55,10 @@ export const Main = () => {
         <Container fixed>
             <Error/>
             <Grid container spacing={2}>
-                <Grid item md={4}>
+                <Grid item lg={5} xl={4}>
                     <Paper className="taskBox" elevation={3}>
                         <p className="taskBox__title">Add new todoList</p>
-                        <AddItemForm onclick={addTodoHandler}/>
+                        <AddItemForm callBack={addTodoHandler}/>
                     </Paper>
                 </Grid>
             </Grid>
@@ -67,4 +67,4 @@ export const Main = () => {
             </Grid>
     </Container>
     )
-}
+})
