@@ -1,8 +1,8 @@
 import React from 'react';
-import {Route, Routes} from 'react-router-dom';
-import Header from '../components/Header/Header';
-import Login from '../components/Login/Login';
-import {Main} from '../components/Main/Main';
+import { Route, Routes } from 'react-router-dom';
+import { Header } from '../components/Header/Header';
+import { Login } from '../components/Login/Login';
+import { Main } from '../components/Main/Main';
 
 import './reset.css'
 import './App.scss';

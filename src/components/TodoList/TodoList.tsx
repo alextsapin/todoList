@@ -6,7 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 // Components
 import { Snap } from '../Snap/Snap';
-import TaskList from '../TaskList/TaskList';
+import { TaskList } from '../TaskList/TaskList';
 
 
 // TC
@@ -67,7 +67,7 @@ export const TodoList = memo((props: TodoListProps) => {
 
     return (
         <Grid item lg={5} xl={4}>
-            <Paper className="taskBox" elevation={3}>
+            <Paper className="taskBox" elevation={8}>
                 <EditableField title={props.title} css="taskBox__title" callBack={changeTodoTitleHandler}/>
                 <Snap 
                     title='' 

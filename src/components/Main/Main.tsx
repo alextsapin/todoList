@@ -3,7 +3,7 @@ import React, { memo, useCallback, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
 import Grid from '@mui/material/Grid';
-import Error from '../Error/Error';
+import { Error } from '../Error/Error';
 import { TodoList } from '../TodoList/TodoList';
 import { changeTodoListFilter, fetchTodos } from '../TodoList/todos.reducer';
 import { addTodoList } from '../TodoList/todos.reducer';
@@ -56,8 +56,7 @@ export const Main =  memo(() => {
             <Error/>
             <Grid container spacing={2}>
                 <Grid item lg={5} xl={4}>
-                    <Paper className="taskBox" elevation={3}>
-                        <p className="taskBox__title">Add new todoList</p>
+                    <Paper className="taskBox" elevation={8}>
                         <AddItemForm callBack={addTodoHandler}/>
                     </Paper>
                 </Grid>

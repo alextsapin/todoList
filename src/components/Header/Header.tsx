@@ -13,7 +13,7 @@ import {auth, logout} from '../Login/login.reducer';
 import css from './css.module.scss';
 import logo from './logo.png';
 
-const Header: FC = () => {
+export const Header: FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -64,5 +64,3 @@ const Header: FC = () => {
         </React.Fragment>
     )
 }
-
-export default Header;

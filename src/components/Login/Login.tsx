@@ -1,16 +1,16 @@
 import React from 'react';
-import {useFormik} from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
 
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
-import {Button} from '@mui/material';
+import { Button } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Error from '../Error/Error';
+import { Error } from '../Error/Error';
 
-import {useAppDispatch} from '../../hooks/hooks';
-import {login} from './login.reducer';
+import { useAppDispatch } from '../../hooks/hooks';
+import { login } from './login.reducer';
 import css from './css.module.scss';
 
 type FormValuesType = {
@@ -25,7 +25,7 @@ const loginSchema = yup.object().shape({
     password: yup.string().min(6).max(12).required()
 })
 
-const Login = () => {
+export const Login = () => {
     const dispatch = useAppDispatch()
 
     const formik = useFormik({
@@ -78,5 +78,3 @@ const Login = () => {
         </Container>
     )
 }
-
-export default Login
