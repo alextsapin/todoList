@@ -129,7 +129,6 @@ export const taskAPI = {
             addedDate: bundle.addedDate,
             order: bundle.order
         });
-        console.log(response);
         return response;
     }
 }

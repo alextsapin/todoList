@@ -1,9 +1,9 @@
 import {createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import {taskAPI, taskType, TodoListApi, taskPriority, taskStatus} from '../../api/api';
+import {taskAPI, taskType, TodoListApi, taskPriority, taskStatus} from '../../shared/api/api';
 import {AppStateType} from '../../App/store';
-import {setError, setStatus} from '../../App/App.reducer';
+import {setError, setStatus} from '../../App/app.reducer';
 import {AxiosError} from 'axios';
-import {addTodoList, deleteTodoList, fetchTodos} from '../../components/TodoList/todos.reducer';
+import {addTodoList, deleteTodoList, fetchTodos} from '../TodoList/todo.reducer';
 
 export type BundleType = {
     title?: string

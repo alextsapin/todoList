@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useState } from 'react';
-import {useAppSelector} from '../../hooks/hooks';
+import {useAppSelector} from '../../shared/hooks/hooks';
 
 // MUI
 import AddCircleIcon from '@mui/icons-material/AddCircle'

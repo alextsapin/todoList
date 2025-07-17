@@ -1,5 +1,5 @@
-import {setError, setStatus, InitialStateType} from './App.reducer';
-import {AppReducer} from './App.reducer';
+import {setError, setStatus, InitialStateType} from './app.reducer';
+import {AppReducer} from './app.reducer';
 
 let startState: InitialStateType;
 

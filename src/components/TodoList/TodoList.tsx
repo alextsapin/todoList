@@ -10,16 +10,16 @@ import { TaskList } from '../TaskList/TaskList';
 
 
 // TC
-import {changeTodoListTitle, deleteTodoList} from './todos.reducer';
+import {changeTodoListTitle, deleteTodoList} from './todo.reducer';
 import {addTask, fetchTasks} from '../TaskList/task.reducer';
 
 // Hooks
-import {useAppDispatch} from '../../hooks/hooks';
+import {useAppDispatch} from '../../shared/hooks/hooks';
 
 // Types
-import { taskStatus, taskType } from '../../api/api';
-import { filterType } from './todos.reducer';
-import { StatusType } from '../../App/App.reducer';
+import { taskStatus, taskType } from '../../shared/api/api';
+import { filterType } from './todo.reducer';
+import { StatusType } from '../../App/app.reducer';
 import { AddItemForm } from 'components/AddItemForm/AddItemForm';
 import { EditableField } from 'components/EditableField/EditableField';
 

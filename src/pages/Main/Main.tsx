@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useCallback, useEffect } from 'react';
 import Container from '@mui/material/Container';
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
+import { useAppSelector, useAppDispatch } from '../../shared/hooks/hooks';
 import Grid from '@mui/material/Grid';
-import { Error } from '../Error/Error';
-import { TodoList } from '../TodoList/TodoList';
-import { changeTodoListFilter, fetchTodos } from '../TodoList/todos.reducer';
-import { addTodoList } from '../TodoList/todos.reducer';
-import { deleteTask } from '../TaskList/task.reducer';
-import { filterType } from '../TodoList/todos.reducer';
+import { Error } from '../../components/Error/Error';
+import { TodoList } from '../../components/TodoList/TodoList';
+import { changeTodoListFilter, fetchTodos } from '../../components/TodoList/todo.reducer';
+import { addTodoList } from '../../components/TodoList/todo.reducer';
+import { deleteTask } from '../../components/TaskList/task.reducer';
+import { filterType } from '../../components/TodoList/todo.reducer';
 import { AddItemForm } from 'components/AddItemForm/AddItemForm';
 import { Paper } from '@mui/material';
 

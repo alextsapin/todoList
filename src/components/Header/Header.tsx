@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {FC, useEffect} from 'react';
+import React, { FC, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';
-import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../shared/hooks/hooks';
 import AppBar from '@mui/material/AppBar';
-import {NavLink, useNavigate} from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Tooltip from '@mui/material/Tooltip';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {Img} from 'react-image';
+import { Img } from 'react-image';
 import LoginIcon from '@mui/icons-material/Login';
-import {auth, logout} from '../Login/login.reducer';
-import css from './css.module.scss';
-import logo from './logo.png';
+import { auth, logout } from '../../pages/Login/login.reducer';
+import css from './header.module.scss';
+import logo from '../../shared/images/logo.png';
 
 export const Header: FC = () => {
     const dispatch = useAppDispatch();
