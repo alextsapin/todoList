@@ -7,9 +7,9 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { Error } from '../../components/Error/Error';
+import { Error } from '@/components/Error/Error';
 
-import { useAppDispatch } from '../../shared/hooks/hooks';
+import { useAppDispatch } from '@/shared/hooks/hooks';
 import { login } from './login.reducer';
 import css from './login.module.scss';
 

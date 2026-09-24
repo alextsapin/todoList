@@ -2,16 +2,16 @@
 import React, { FC, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';
-import { useAppDispatch, useAppSelector } from '../../shared/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import AppBar from '@mui/material/AppBar';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Tooltip from '@mui/material/Tooltip';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Img } from 'react-image';
 import LoginIcon from '@mui/icons-material/Login';
-import { auth, logout } from '../../pages/Login/login.reducer';
+import { auth, logout } from '@/pages/Login/login.reducer';
 import css from './header.module.scss';
-import logo from '../../shared/images/logo.png';
+import logo from '@/shared/images/logo.png';
 
 export const Header: FC = () => {
     const dispatch = useAppDispatch();
@@ -23,10 +23,6 @@ export const Header: FC = () => {
     useEffect(() => {
         dispatch(auth())
     }, [])
-
-    useEffect(() => {
-        dispatch(auth())
-    }, [isAuthorized])
 
     useEffect(() => {
         if(isAuthorized) {
@@ -45,7 +41,7 @@ export const Header: FC = () => {
                             <Img className={css.logo} src={logo}/>
                         </NavLink>
                         {
-                            !   isAuthorized
+                            !isAuthorized
                             ?   <Tooltip className={css.cursor} title="Login">
                                     <NavLink to="/login" className={css.link}>
                                         <LoginIcon/>

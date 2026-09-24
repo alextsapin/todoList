@@ -4,7 +4,7 @@ const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
     headers: {
-        'API-KEY': '30c81b6c-6404-4cbc-82de-54ef5cf3c912'
+        'API-KEY': process.env.REACT_APP_API_KEY as string
     }
 })
 
@@ -64,7 +64,7 @@ export enum taskStatus {
     New = 0,
     InProgress = 1,
     Completed = 2,
-    Dreft = 3
+    Draft = 3
 }
 
 export enum taskPriority {

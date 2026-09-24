@@ -1,0 +1,7 @@
+{
+  "files.exclude": {
+    "**/desktop.ini": true
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative"
+}

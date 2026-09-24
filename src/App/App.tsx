@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Header } from '../components/Header/Header';
-import { Login } from '../pages/Login/Login';
-import { Main } from '../pages/Main/Main';
+import { Header } from '@/widgets/header';
+import { Login } from '@/pages/Login/Login';
+import { Main } from '@/pages/Main/Main';
 
-import '../shared/css/reset.css'
+import '@/shared/css/reset.css'
 import './app.scss';
 
 export const App = React.memo(() => {

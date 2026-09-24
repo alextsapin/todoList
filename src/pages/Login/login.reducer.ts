@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction, createAsyncThunk} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
-import {authAPI, loginType} from '../../shared/api/api';
-import {setError, setStatus} from '../../App/app.reducer';
+import {authAPI, loginType} from '@/shared/api/api';
+import {setError, setStatus} from '@/App/app.reducer';
 
 export type StateType = {
     isAuthorized: boolean
@@ -83,5 +83,5 @@ const slice = createSlice({
 })
 
 export const loginReducer = slice.reducer;
-export const loginActions = slice.reducer;
+export const loginActions = slice.actions;
 export const {setIsAuthorized} = slice.actions

@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
-import {taskStatus, taskType} from '../../shared/api/api';
-import { Snap } from '../Snap/Snap';
-import { EditableField } from '../EditableField/EditableField';
+import {taskStatus, taskType} from '@/shared/api/api';
+import { Snap } from '@/components/Snap/Snap';
+import { EditableField } from '@/components/EditableField/EditableField';
 import Checkbox from '@mui/material/Checkbox';
 import {updateTask} from './task.reducer';
-import {useAppDispatch} from '../../shared/hooks/hooks';
+import {useAppDispatch} from '@/shared/hooks/hooks';
 
 type TaskListPropsType = {
     tasks: Array<taskType>

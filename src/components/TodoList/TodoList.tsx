@@ -5,23 +5,23 @@ import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 // Components
-import { Snap } from '../Snap/Snap';
-import { TaskList } from '../TaskList/TaskList';
+import { Snap } from '@/components/Snap/Snap';
+import { TaskList } from '@/components/TaskList/TaskList';
 
 
 // TC
 import {changeTodoListTitle, deleteTodoList} from './todo.reducer';
-import {addTask, fetchTasks} from '../TaskList/task.reducer';
+import {addTask, fetchTasks} from '@/components/TaskList/task.reducer';
 
 // Hooks
-import {useAppDispatch} from '../../shared/hooks/hooks';
+import {useAppDispatch} from '@/shared/hooks/hooks';
 
 // Types
-import { taskStatus, taskType } from '../../shared/api/api';
+import { taskStatus, taskType } from '@/shared/api/api';
 import { filterType } from './todo.reducer';
-import { StatusType } from '../../App/app.reducer';
-import { AddItemForm } from 'components/AddItemForm/AddItemForm';
-import { EditableField } from 'components/EditableField/EditableField';
+import { StatusType } from '@/App/app.reducer';
+import { AddItemForm } from '@/components/AddItemForm/AddItemForm';
+import { EditableField } from '@/components/EditableField/EditableField';
 
 type TodoListProps = {
     title: string

@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useState } from 'react';
-import {useAppSelector} from '../../shared/hooks/hooks';
+import {useAppSelector} from '@/shared/hooks/hooks';
 
 // MUI
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import TextField from '@mui/material/TextField'
 
 // Components
-import { Snap } from '../Snap/Snap';
+import { Snap } from '@/components/Snap/Snap';
 
 type AddItemFormProps = {
     callBack: (title: string) => void
