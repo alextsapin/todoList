@@ -11,7 +11,7 @@ import { Img } from 'react-image';
 import LoginIcon from '@mui/icons-material/Login';
 import { auth, logout } from '@/pages/Login/login.reducer';
 import css from './header.module.scss';
-import logo from '@/shared/images/logo.png';
+import logo from '../assets/logo.png';
 
 export const Header: FC = () => {
     const dispatch = useAppDispatch();

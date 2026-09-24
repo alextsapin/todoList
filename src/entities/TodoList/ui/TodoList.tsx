@@ -10,7 +10,7 @@ import { TaskList } from '@/components/TaskList/TaskList';
 
 
 // TC
-import {changeTodoListTitle, deleteTodoList} from './todo.reducer';
+import {changeTodoListTitle, deleteTodoList} from '../model/todo.reducer';
 import {addTask, fetchTasks} from '@/components/TaskList/task.reducer';
 
 // Hooks
@@ -18,8 +18,8 @@ import {useAppDispatch} from '@/shared/hooks/hooks';
 
 // Types
 import { taskStatus, taskType } from '@/shared/api/api';
-import { filterType } from './todo.reducer';
-import { StatusType } from '@/App/app.reducer';
+import { filterType } from '../model/todo.reducer';
+import { StatusType } from '@/App/model/app.reducer';
 import { AddItemForm } from '@/components/AddItemForm/AddItemForm';
 import { EditableField } from '@/components/EditableField/EditableField';
 

@@ -5,7 +5,7 @@ import { Login } from '@/pages/Login/Login';
 import { Main } from '@/pages/Main/Main';
 
 import '@/shared/css/reset.css'
-import './app.scss';
+import './styles/App.scss';
 
 export const App = React.memo(() => {
     return (
