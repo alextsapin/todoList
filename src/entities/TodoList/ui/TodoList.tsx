@@ -1,118 +1,127 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useCallback, useEffect } from 'react';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+
 import DeleteIcon from '@mui/icons-material/Delete';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 // Components
-import { Snap } from '@/components/Snap/Snap';
-import { TaskList } from '@/components/TaskList/TaskList';
-
-
-// TC
-import {changeTodoListTitle, deleteTodoList} from '../model/todo.reducer';
-import {addTask, fetchTasks} from '@/components/TaskList/task.reducer';
-
-// Hooks
-import {useAppDispatch} from '@/shared/hooks/hooks';
-
-// Types
-import { taskStatus, taskType } from '@/shared/api/api';
-import { filterType } from '../model/todo.reducer';
 import { StatusType } from '@/App/model/app.reducer';
 import { AddItemForm } from '@/components/AddItemForm/AddItemForm';
 import { EditableField } from '@/components/EditableField/EditableField';
+import { Snap } from '@/components/Snap/Snap';
+import { addTask, fetchTasks } from '@/components/TaskList/task.reducer';
+import { TaskList } from '@/components/TaskList/TaskList';
+
+// TC
+import { taskStatus, taskType } from '@/shared/api/api';
+import { useAppDispatch } from '@/shared/hooks/hooks';
+
+import { changeTodoListTitle, deleteTodoList, filterType } from '../model/todo.reducer';
+
+// Hooks
+
+// Types
 
 type TodoListProps = {
-    title: string
-    todoListId: string
-    filter: filterType
-    status: StatusType
-    tasks: Array<taskType>
-    removeTask: (todolistId: string, id: string) => void
-    changeFilter: (todoListId: string, filter: filterType) => void
-}
+    title: string;
+    todoListId: string;
+    filter: filterType;
+    status: StatusType;
+    tasks: Array<taskType>;
+    removeTask: (todolistId: string, id: string) => void;
+    changeFilter: (todoListId: string, filter: filterType) => void;
+};
 
 export const TodoList = memo((props: TodoListProps) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchTasks(props.todoListId))
-    }, [])
+        dispatch(fetchTasks(props.todoListId));
+    }, []);
 
-    const addTaskHandler = useCallback((title: string) => {
-        let trimmedTitle = title.trim();
-        if(trimmedTitle) {
-            dispatch(addTask({todoListId: props.todoListId, title: trimmedTitle}))
-        }
-    }, [dispatch, props.todoListId])
+    const addTaskHandler = useCallback(
+        (title: string) => {
+            const trimmedTitle = title.trim();
+
+            if (trimmedTitle) {
+                dispatch(addTask({ todoListId: props.todoListId, title: trimmedTitle }));
+            }
+        },
+        [dispatch, props.todoListId],
+    );
 
     const changeTodoTitleHandler = (title: string) => {
-        dispatch(changeTodoListTitle({id: props.todoListId, title}))
-    }
+        dispatch(changeTodoListTitle({ id: props.todoListId, title }));
+    };
 
-    let tasksForTodoList = props.tasks
-    switch(props.filter) {
+    let tasksForTodoList = props.tasks;
+
+    switch (props.filter) {
         case 'ACTIVE':
-        tasksForTodoList = props.tasks.filter(t => t.status === taskStatus.New)
-        break;
+            tasksForTodoList = props.tasks.filter(t => t.status === taskStatus.New);
+            break;
 
         case 'COMPLETED':
-        tasksForTodoList = props.tasks.filter(t => t.status === taskStatus.Completed)
-        break;
+            tasksForTodoList = props.tasks.filter(t => t.status === taskStatus.Completed);
+            break;
 
         default:
-        tasksForTodoList = props.tasks
+            tasksForTodoList = props.tasks;
     }
 
     return (
         <Grid item lg={5} xl={4}>
             <Paper className="taskBox" elevation={8}>
-                <EditableField title={props.title} css="taskBox__title" callBack={changeTodoTitleHandler}/>
-                <Snap 
-                    title='' 
-                    variant='contained'
+                <EditableField
+                    title={props.title}
+                    css="taskBox__title"
+                    callBack={changeTodoTitleHandler}
+                />
+                <Snap
+                    title=""
+                    variant="contained"
                     color="error"
-                    callBack={() => dispatch(deleteTodoList(props.todoListId))} 
+                    callBack={() => dispatch(deleteTodoList(props.todoListId))}
                     btnClass="taskBox__del"
-                    startIcon={<DeleteIcon/>}
+                    startIcon={<DeleteIcon />}
                     disabled={props.status === 'loading'}
                 />
 
-                <AddItemForm callBack={addTaskHandler}/>
-                                
-                <TaskList 
-                    tasks={tasksForTodoList} 
-                    todoListId={props.todoListId} 
-                    removeTask={props.removeTask} 
+                <AddItemForm callBack={addTaskHandler} />
+
+                <TaskList
+                    tasks={tasksForTodoList}
+                    todoListId={props.todoListId}
+                    removeTask={props.removeTask}
                 />
 
                 <div className="filterBox">
-                    <Snap 
-                        title='All' 
-                        variant='contained'
-                        callBack={() => props.changeFilter(props.todoListId, 'ALL')} 
-                        disabled={props.filter === 'ALL' ? true : false}
-                        btnClass='filterBox__btn'
+                    <Snap
+                        title="All"
+                        variant="contained"
+                        callBack={() => props.changeFilter(props.todoListId, 'ALL')}
+                        disabled={props.filter === 'ALL'}
+                        btnClass="filterBox__btn"
                     />
 
                     <Snap
-                        title='Active' 
-                        variant='contained'
-                        callBack={() => props.changeFilter(props.todoListId, 'ACTIVE')} 
-                        disabled={props.filter === 'ACTIVE' ? true : false}
-                        btnClass='filterBox__btn'
+                        title="Active"
+                        variant="contained"
+                        callBack={() => props.changeFilter(props.todoListId, 'ACTIVE')}
+                        disabled={props.filter === 'ACTIVE'}
+                        btnClass="filterBox__btn"
                     />
 
                     <Snap
-                        title='DONE' 
-                        variant='contained'
-                        callBack={() => props.changeFilter(props.todoListId, 'COMPLETED')} 
-                        disabled={props.filter === 'COMPLETED' ? true : false}
-                        btnClass='filterBox__btn'
+                        title="DONE"
+                        variant="contained"
+                        callBack={() => props.changeFilter(props.todoListId, 'COMPLETED')}
+                        disabled={props.filter === 'COMPLETED'}
+                        btnClass="filterBox__btn"
                     />
                 </div>
             </Paper>
         </Grid>
-    )
-})
+    );
+});
