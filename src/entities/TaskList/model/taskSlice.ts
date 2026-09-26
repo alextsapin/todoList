@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { AppStateType } from '@/App';
-import { setError, setStatus } from '@/App/model/appSlice';
+import { AppStateType, setError, setStatus } from '@/App';
 import { addTodoList, deleteTodoList, fetchTodos } from '@/entities/TodoList';
 import {
     taskAPI,

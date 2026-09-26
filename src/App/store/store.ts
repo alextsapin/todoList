@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers, AnyAction } from 'redux';
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
-import { AppReducer } from '@/App/model/appSlice';
+import { AppReducer } from '../model/appSlice';
 import { taskReducer } from '@/entities/TaskList';
 import { todoReducer } from '@/entities/TodoList';
 import { loginReducer } from '@/pages/Login/login.reducer';

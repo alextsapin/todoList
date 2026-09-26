@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { setError, setStatus } from '@/App/model/appSlice';
+import { setError, setStatus } from '@/App';
 import { authAPI, loginType } from '@/shared/api/api';
 import { RESULT_CODE } from '@/shared/constants';
 

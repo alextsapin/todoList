@@ -5,8 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
-import { useAppDispatch } from '@/App';
-import { StatusType } from '@/App/model/appSlice';
+import { StatusType, useAppDispatch } from '@/App';
 import { AddItemForm } from '@/components/AddItemForm/AddItemForm';
 import { EditableField } from '@/components/EditableField/EditableField';
 import { Snap } from '@/components/Snap/Snap';

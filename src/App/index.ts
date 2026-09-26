@@ -1,3 +1,4 @@
+export { setError, setStatus, type StatusType } from './model/appSlice';
 export { App } from './ui/App';
 export {
     store,

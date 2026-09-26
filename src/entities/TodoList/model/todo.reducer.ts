@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { setError, setStatus, StatusType } from '@/App/model/appSlice';
+import { setError, setStatus, StatusType } from '@/App';
 import { todosAPI, TodoListApi } from '@/shared/api/api';
 import { HTTP_STATUS } from '@/shared/constants';
 
