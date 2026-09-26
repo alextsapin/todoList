@@ -11,7 +11,7 @@ import { Img } from 'react-image';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@/App';
-import { auth, logout } from '@/pages/Login/login.reducer';
+import { auth, logout } from '@/pages/login';
 
 import logo from '../assets/logo.png';
 

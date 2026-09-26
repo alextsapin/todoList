@@ -3,8 +3,8 @@ import React, { FC } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 
 import { useAppDispatch } from '@/App';
-import { EditableField } from '@/components/EditableField/EditableField';
 import { Snap } from '@/components/Snap/Snap';
+import { EditableField } from '@/features/EditableField';
 import { taskStatus, taskType } from '@/shared/api/api';
 
 import { updateTask } from '../model/taskSlice';

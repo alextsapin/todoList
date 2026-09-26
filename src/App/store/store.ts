@@ -2,10 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers, AnyAction } from 'redux';
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
-import { AppReducer } from '../model/appSlice';
 import { taskReducer } from '@/entities/TaskList';
 import { todoReducer } from '@/entities/TodoList';
-import { loginReducer } from '@/pages/Login/login.reducer';
+import { loginReducer } from '@/pages/login';
+
+import { AppReducer } from '../model/appSlice';
 
 const rootReducer = combineReducers({
     App: AppReducer,

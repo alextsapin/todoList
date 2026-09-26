@@ -7,9 +7,9 @@ import Paper from '@mui/material/Paper';
 
 import { StatusType, useAppDispatch } from '@/App';
 import { AddItemForm } from '@/components/AddItemForm/AddItemForm';
-import { EditableField } from '@/components/EditableField/EditableField';
 import { Snap } from '@/components/Snap/Snap';
 import { addTask, fetchTasks, TaskList } from '@/entities/TaskList';
+import { EditableField } from '@/features/EditableField';
 import { taskStatus, taskType } from '@/shared/api/api';
 
 import { changeTodoListTitle, deleteTodoList, filterType } from '../model/todo.reducer';

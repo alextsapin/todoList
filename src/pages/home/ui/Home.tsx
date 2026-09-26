@@ -16,7 +16,7 @@ import {
 } from '@/entities/TodoList';
 import type { filterType } from '@/entities/TodoList';
 
-export const Main = memo((): JSX.Element => {
+export const Home = memo((): JSX.Element => {
     const dispatch = useAppDispatch();
 
     const isAuthorized = useAppSelector(state => state.login.isAuthorized);

@@ -12,8 +12,9 @@ import { useAppDispatch } from '@/App';
 import { Error } from '@/components/Error/Error';
 import { PASSWORD_LENGTH } from '@/shared/constants';
 
+import { login } from '../model/loginSlice';
+
 import css from './login.module.scss';
-import { login } from './login.reducer';
 
 type FormValuesType = {
     email: string;
