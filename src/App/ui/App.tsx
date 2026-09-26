@@ -6,8 +6,8 @@ import { Login } from '@/pages/Login/Login';
 import { Main } from '@/pages/Main/Main';
 import { Header } from '@/widgets/header';
 
-import '@/shared/css/reset.css';
-import './styles/App.scss';
+import '../styles/reset.css';
+import '../styles/App.scss';
 
 export const App = React.memo(() => {
     return (

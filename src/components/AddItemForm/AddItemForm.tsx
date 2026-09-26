@@ -1,52 +1,51 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useState } from 'react';
-import {useAppSelector} from '@/shared/hooks/hooks';
 
-// MUI
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import TextField from '@mui/material/TextField'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import TextField from '@mui/material/TextField';
 
-// Components
+import { useAppSelector } from '@/App';
 import { Snap } from '@/components/Snap/Snap';
 
 type AddItemFormProps = {
-    callBack: (title: string) => void
-}
+    callBack: (title: string) => void;
+};
 
 export const AddItemForm = memo((props: AddItemFormProps) => {
-    const status = useAppSelector(state => state.App.status)
+    const status = useAppSelector(state => state.App.status);
 
     const [error, setError] = useState(false);
-    const [title, setTitle] = useState('')
+    const [title, setTitle] = useState('');
 
-    const onClickHandler = () => {
+    const onClickHandler = (): void => {
         const trimmedTitle = title.trim();
-        if(trimmedTitle) {
-            props.callBack(trimmedTitle)
-            setTitle('')
-            setError(false)
+
+        if (trimmedTitle) {
+            props.callBack(trimmedTitle);
+            setTitle('');
+            setError(false);
         } else {
-            setError(true)
+            setError(true);
         }
-    }
+    };
 
     return (
         <div className="formBox">
-            <TextField 
-                value={title} 
+            <TextField
+                value={title}
                 onChange={e => setTitle(e.currentTarget.value)}
                 size="small"
-                label="Add new todoList" 
+                label="Add new todoList"
                 error={error}
             />
 
-            <Snap 
-                title='ADD' 
-                variant='contained' 
+            <Snap
+                title="ADD"
+                variant="contained"
                 callBack={onClickHandler}
                 disabled={status === 'loading'}
-                startIcon={<AddCircleIcon/>}
+                startIcon={<AddCircleIcon />}
             />
         </div>
-    )
-})
+    );
+});

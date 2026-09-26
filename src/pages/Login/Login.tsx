@@ -1,44 +1,46 @@
-import React from 'react';
+import React, { JSX } from 'react';
+
+import { Button } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
+import Container from '@mui/material/Container';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import TextField from '@mui/material/TextField';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import Container from '@mui/material/Container';
-import TextField from '@mui/material/TextField';
-import { Button } from '@mui/material';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import { useAppDispatch } from '@/App';
 import { Error } from '@/components/Error/Error';
+import { PASSWORD_LENGTH } from '@/shared/constants';
 
-import { useAppDispatch } from '@/shared/hooks/hooks';
-import { login } from './login.reducer';
 import css from './login.module.scss';
+import { login } from './login.reducer';
 
 type FormValuesType = {
-    email: string
-    password: string
-    rememberMe: boolean
-    captcha?: string
-}
+    email: string;
+    password: string;
+    rememberMe: boolean;
+    captcha?: string;
+};
 
 const loginSchema = yup.object().shape({
     email: yup.string().email('Please enter a valid email').required(),
-    password: yup.string().min(6).max(12).required()
-})
+    password: yup.string().min(PASSWORD_LENGTH.MIN).max(PASSWORD_LENGTH.MAX).required(),
+});
 
-export const Login = () => {
-    const dispatch = useAppDispatch()
+export const Login = (): JSX.Element => {
+    const dispatch = useAppDispatch();
 
     const formik = useFormik({
         initialValues: {
             email: process.env.REACT_APP_API_EMAIL || '',
             password: process.env.REACT_APP_API_PASSWORD || '',
-            rememberMe: false
+            rememberMe: false,
         },
         validationSchema: loginSchema,
         onSubmit: (values: FormValuesType, actions) => {
             dispatch(login(values));
             actions.resetForm();
-        }
+        },
     });
 
     return (
@@ -50,10 +52,10 @@ export const Login = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     type="text"
-                    label='Email'
+                    label="Email"
                     size="small"
                     className={css.field}
-                    error={formik.errors.email && formik.touched.email ? true : false}
+                    error={!!(formik.errors.email && formik.touched.email)}
                 />
 
                 <TextField
@@ -65,16 +67,30 @@ export const Login = () => {
                     label="Password"
                     size="small"
                     className={css.field}
-                    error={formik.errors.password && formik.touched.password ? true : false}
+                    error={!!(formik.errors.password && formik.touched.password)}
                 />
 
-                <FormControlLabel control={
-                    <Checkbox name="rememberMe" value={formik.values.rememberMe} onChange={formik.handleChange}/>
-                    } label="Запомнить меня"/>
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            name="rememberMe"
+                            value={formik.values.rememberMe}
+                            onChange={formik.handleChange}
+                        />
+                    }
+                    label="Запомнить меня"
+                />
 
-                <Button type="submit" variant='contained' className={css.button} disabled={formik.isSubmitting}>Отправить</Button>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    className={css.button}
+                    disabled={formik.isSubmitting}
+                >
+                    Отправить
+                </Button>
             </form>
-            <Error/>
+            <Error />
         </Container>
-    )
-}
+    );
+};

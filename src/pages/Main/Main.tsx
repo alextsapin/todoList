@@ -1,9 +1,13 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, JSX } from 'react';
+
+import { Paper } from '@mui/material';
 import Container from '@mui/material/Container';
-import { useAppSelector, useAppDispatch } from '@/shared/hooks/hooks';
 import Grid from '@mui/material/Grid';
+
+import { useAppSelector, useAppDispatch } from '@/App';
+import { AddItemForm } from '@/components/AddItemForm/AddItemForm';
 import { Error } from '@/components/Error/Error';
+import { deleteTask } from '@/entities/TaskList';
 import {
     TodoList,
     changeTodoListFilter,
@@ -11,11 +15,8 @@ import {
     addTodoList,
 } from '@/entities/TodoList';
 import type { filterType } from '@/entities/TodoList';
-import { deleteTask } from '@/components/TaskList/task.reducer';
-import { AddItemForm } from '@/components/AddItemForm/AddItemForm';
-import { Paper } from '@mui/material';
 
-export const Main =  memo(() => {
+export const Main = memo((): JSX.Element => {
     const dispatch = useAppDispatch();
 
     const isAuthorized = useAppSelector(state => state.login.isAuthorized);
@@ -24,52 +25,59 @@ export const Main =  memo(() => {
 
     useEffect(() => {
         if (isAuthorized) {
-            dispatch(fetchTodos())
+            dispatch(fetchTodos());
         }
-    }, [isAuthorized])
+    }, [dispatch, isAuthorized]);
 
     // Todos
-    const changeFilter = useCallback((id: string, filter: filterType) => {
-        dispatch(changeTodoListFilter({id, filter}))
-    }, [])
+    const changeFilter = useCallback(
+        (id: string, filter: filterType) => {
+            dispatch(changeTodoListFilter({ id, filter }));
+        },
+        [dispatch],
+    );
 
-    const addTodoHandler = useCallback((title: string) => {
-        dispatch(addTodoList(title))
-    }, [])
+    const addTodoHandler = useCallback(
+        (title: string) => {
+            dispatch(addTodoList(title));
+        },
+        [dispatch],
+    );
 
     // Tasks
     const removeTask = useCallback((todoListId: string, taskId: string) => {
-        dispatch(deleteTask({todoListId, taskId}));
-    }, [])
+        dispatch(deleteTask({ todoListId, taskId }));
+    }, []);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const todoListJSX = todoListBox.map((item, index) => {
         return (
-            <TodoList 
+            <TodoList
                 key={item.id}
                 title={item.title}
                 todoListId={item.id}
-                filter={item.filter} 
+                filter={item.filter}
                 status={item.status}
-                tasks={taskBox[item.id]} 
-                removeTask={removeTask} 
-                changeFilter={changeFilter} 
+                tasks={taskBox[item.id]}
+                removeTask={removeTask}
+                changeFilter={changeFilter}
             />
-        )
-    })
+        );
+    });
 
     return (
         <Container fixed>
-            <Error/>
+            <Error />
             <Grid container spacing={2}>
                 <Grid item lg={5} xl={4}>
                     <Paper className="taskBox" elevation={8}>
-                        <AddItemForm callBack={addTodoHandler}/>
+                        <AddItemForm callBack={addTodoHandler} />
                     </Paper>
                 </Grid>
             </Grid>
             <Grid container spacing={2}>
                 {todoListJSX}
             </Grid>
-    </Container>
-    )
-})
+        </Container>
+    );
+});

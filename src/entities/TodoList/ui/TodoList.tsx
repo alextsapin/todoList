@@ -5,23 +5,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
-// Components
-import { StatusType } from '@/App/model/app.reducer';
+import { useAppDispatch } from '@/App';
+import { StatusType } from '@/App/model/appSlice';
 import { AddItemForm } from '@/components/AddItemForm/AddItemForm';
 import { EditableField } from '@/components/EditableField/EditableField';
 import { Snap } from '@/components/Snap/Snap';
-import { addTask, fetchTasks } from '@/components/TaskList/task.reducer';
-import { TaskList } from '@/components/TaskList/TaskList';
-
-// TC
+import { addTask, fetchTasks, TaskList } from '@/entities/TaskList';
 import { taskStatus, taskType } from '@/shared/api/api';
-import { useAppDispatch } from '@/shared/hooks/hooks';
 
 import { changeTodoListTitle, deleteTodoList, filterType } from '../model/todo.reducer';
-
-// Hooks
-
-// Types
 
 type TodoListProps = {
     title: string;
@@ -51,7 +43,7 @@ export const TodoList = memo((props: TodoListProps) => {
         [dispatch, props.todoListId],
     );
 
-    const changeTodoTitleHandler = (title: string) => {
+    const changeTodoTitleHandler = (title: string): void => {
         dispatch(changeTodoListTitle({ id: props.todoListId, title }));
     };
 

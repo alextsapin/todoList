@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { setError, setStatus, StatusType } from '@/App/model/app.reducer';
+import { setError, setStatus, StatusType } from '@/App/model/appSlice';
 import { todosAPI, TodoListApi } from '@/shared/api/api';
+import { HTTP_STATUS } from '@/shared/constants';
 
 export type filterType = 'ALL' | 'ACTIVE' | 'COMPLETED';
 
@@ -44,7 +45,7 @@ export const addTodoList = createAsyncThunk(
         try {
             const res = await todosAPI.addTodo(title);
 
-            if (res.status === 200) {
+            if (res.status === HTTP_STATUS.OK) {
                 dispatch(setStatus({ status: 'succeeded' }));
 
                 return { title, id: res.data.data.item.id };
@@ -72,7 +73,7 @@ export const deleteTodoList = createAsyncThunk(
         try {
             const res = await todosAPI.deleteTodo(id);
 
-            if (res.status === 200) {
+            if (res.status === HTTP_STATUS.OK) {
                 dispatch(setStatus({ status: 'succeeded' }));
 
                 return { id };
@@ -100,7 +101,7 @@ export const changeTodoListTitle = createAsyncThunk(
         try {
             const res = await todosAPI.updateTodo(params.id, params.title);
 
-            if (res === 200) {
+            if (res === HTTP_STATUS.OK) {
                 dispatch(setStatus({ status: 'succeeded' }));
 
                 return { id: params.id, title: params.title };
