@@ -62,7 +62,7 @@ export const TodoList = memo((props: TodoListProps) => {
     }
 
     return (
-        <Grid item lg={5} xl={4}>
+        <Grid item xl={3}>
             <Paper className="taskBox" elevation={8}>
                 <EditableField
                     title={props.title}

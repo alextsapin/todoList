@@ -66,10 +66,10 @@ export const Home = memo((): JSX.Element => {
     });
 
     return (
-        <Container fixed>
+        <Container maxWidth={false}>
             <Error />
             <Grid container spacing={2}>
-                <Grid item lg={5} xl={4}>
+                <Grid item xl={3}>
                     <Paper className="taskBox" elevation={8}>
                         <AddItemForm callBack={addTodoHandler} />
                     </Paper>
